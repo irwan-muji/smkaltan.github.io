@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakerin Altan</title>
+    <!-- Menggunakan Font Awesome untuk ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iN17t9brUH7t9z1ZzYYT1uaJ0dPPR8W9BZsXZhZ83Pc5n2+I5XVnN0Aq" crossorigin="anonymous">
+    <style>
+       body {
+            font-family: 'Roboto', sans-serif; /* Menggunakan font Roboto */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('bc.jpg'); /* Ganti dengan URL gambar latar belakang Anda */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card {
+            background-color: rgba(254, 255, 255, 0.431); /* Warna transparan putih */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(222, 222, 222, 0.355); /* Efek bayangan */
+            text-align: center;
+            max-width: 600px; /* Maksimum lebar card */
+            margin: 0 auto; /* Tengahkan card */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 30px;
+            color: #353434;
+            font-family: Dubai Medium
+        }
+
+        h4 {
+            font-size: 14px;
+            color: #353434;
+            font-family: Dubai Medium
+        }
+
+        .logo {
+            width: 100px; /* Sesuaikan dengan ukuran logo */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .link-container {
+            display: flex;
+            flex-direction: column; /* Mengatur tata letak menjadi kolom */
+            align-items: center; /* Pusatkan secara horizontal */
+            margin-top: 20px;
+        }
+
+        .link {
+            text-decoration: none;
+            color: #fff; /* Warna teks tombol */
+            background-color: #1fc94c; /* Warna biru */
+            padding: 15px 20px; /* Ukuran tombol yang disesuaikan */
+            border-radius: 5px;
+            margin-bottom: 10px; /* Jarak antar tombol */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3); /* Efek bayangan */
+        }
+
+        .link:hover {
+            background-color: #797e7b; /* Warna biru yang lebih tua saat tombol dihover */
+            box-shadow: 0 8px 16px rgba(12, 209, 78, 0.695); /* Efek bayangan lebih intensif saat dihover */
+        }
+
+        .link i {
+            margin-right: 10px;
+        }
+
+        .copyright{
+            font-size: 9pt;
+            padding-top: 20px;
+            color: #353635;
+        }
+
+        .link-disabled {
+            background-color: #e44040; /* Warna abu-abu untuk tombol yang dinonaktifkan */
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- <img src="logo.png" alt="Logo Sekolah" class="logo"> -->
+        <h1>Teknik Sepeda Motor</h1>
+        <h4>SMK AL HIKMAH TANON</h4>
+        <div class="link-container">
+            <a href="https://forms.gle/8q1SDcthFLwUk6a97" class="link">
+                <i class="fas fa-sign-in-alt"></i> Absen Masuk
+            </a>
+            <a href="javascript:void(0);" id="absenPulang" class="link link-disabled" onclick="checkTime()">
+                <i class="fas fa-sign-out-alt"></i> Absen Pulang
+            </a>
+        </div>
+        <div class="copyright">
+            Copyright &copy;smkalhikmahtanon
+        </div>
+    </div>
+
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function checkTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+
+            // Cek apakah sudah melewati jam 13:00
+            if (hours >= 13) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Absen Pulang',
+                    text: 'Anda dapat melakukan Absen Pulang sekarang!',
+                    confirmButtonText: 'OK'
+                });
+                // Jika waktu sudah sesuai, aktifkan tombol dan arahkan ke link
+                document.getElementById("absenPulang").classList.remove("link-disabled");
+                document.getElementById("absenPulang").setAttribute("href", "https://forms.gle/zLaQgKiNM6TTFuEp7");
+                // Hapus atribut 'onclick' untuk menghindari pemeriksaan waktu lebih lanjut
+                document.getElementById("absenPulang").removeAttribute("onclick");
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ups!',
+                    text: 'Maaf, Anda belum dapat absen pulang. Silahkan absen pulang sesuai dengan jadwal tempat Prakerin.'
+                });
+            }
+        }
+    </script>
+</body>
+</html>
